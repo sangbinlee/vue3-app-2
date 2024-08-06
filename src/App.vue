@@ -1,6 +1,25 @@
 <script setup lang="ts">
 import Navbar from '@/components/Navbar.vue';
 import { RouterView } from 'vue-router';
+import store from './stores';
+
+
+console.log('1[App.vue] store.state.account.id', store.state.account.id)
+
+const id = sessionStorage.getItem('id')
+console.log('[App.vue] sessionStorage id', id)
+if (id) {
+  store.commit('setAccount', id)
+}
+
+
+console.log('2[App.vue] store.state.account.id', store.state.account.id)
+
+
+
+
+
+
 </script>
 
 <template>

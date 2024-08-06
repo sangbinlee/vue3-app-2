@@ -1,6 +1,20 @@
-import { createStore } from 'vuex';
-import modules from './modules';
+import { createStore } from 'vuex'
 
-export default createStore({
-    modules
-});
+// Create a new store instance.
+const store = createStore({
+  state() {
+    return {
+      // count: 0,
+      account: {
+        id: 0
+      }
+    }
+  },
+  mutations: {
+    setAccount(state, payload) {
+      state.account.id = payload
+    }
+  }
+})
+
+export default store
