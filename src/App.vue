@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import Navbar from '@/components/Navbar.vue';
 import { RouterView } from 'vue-router';
+import Footer from './components/Footer.vue';
+import Header from './components/Header.vue';
+import Svg from './components/Svg.vue';
 import store from './stores';
 
 
@@ -23,10 +25,11 @@ console.log('2[App.vue] store.state.account.id', store.state.account.id)
 </script>
 
 <template>
-  <Navbar />
-  <div class="container">
-    <RouterView />
-  </div>
+  <!-- <Navbar /> -->
+  <Svg />
+  <Header />
+  <RouterView />
+  <Footer />
 </template>
 
 <style scoped>
