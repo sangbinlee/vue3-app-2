@@ -34,7 +34,18 @@ import { reactive } from 'vue';
 import router from '@/router';
 import store from '@/stores';
 
-const baseUrl = 'http://localhost:8081'
+
+// import VueCookies from 'vue-cookies';
+import { useCookies } from "vue3-cookies";
+
+
+const { cookies } = useCookies();
+
+
+
+
+
+const baseUrl = 'https://localhost:8081'
 const state = reactive({
   form: {
     email: 'sangbinlee9@gmail.com',
@@ -47,13 +58,45 @@ const submit = () => {
   console.log('state.form', state.form)
   axios.post(`${baseUrl}/auth/login`, state.form).then((res) => {
     console.log('res', res)
+    console.log('cookie', res.headers)
     store.commit('setAccount', res.data)
     sessionStorage.setItem('id', res.data)
     alert('로그인 성공')
     router.push({ path: '/' })
 
+
+
+    // api 로 쿠키가 
+
+    console.log('res cookies.keys()', cookies.keys())
+    cookies.set('test', new Date())
+    alert(cookies.get('test'))
+    // VueCookies.remove('test')
+    if (cookies.isKey('test')) {
+      alert('값 있음')
+      alert(cookies.get('test'))
+    } else {
+      alert('값 없음')
+    }
+
+
+ 
+
+    axios.get(`${baseUrl}/api/check`).then((res) => {
+      console.log('res', res)
+      alert('check 성공')
+
+    }).catch((res) => {
+      console.log('failed res', res)
+      alert('check 에러 메시지 모달 팝업 res' + res)
+    })
+
+
+
+
   }).catch((res) => {
     console.log('failed res', res)
+    alert('로그인 에러 메시지 모달 팝업 res' + res)
   })
 }
 

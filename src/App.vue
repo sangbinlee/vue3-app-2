@@ -6,6 +6,46 @@ import Svg from './components/Svg.vue';
 import store from './stores';
 
 
+import axios from 'axios';
+
+
+
+
+const baseUrl = 'https://localhost:8081'
+
+axios.get(`${baseUrl}/api/check`).then((res) => {
+  console.log('res', res)
+
+  let id = res.data
+  alert('check 성공 id=' + id)
+
+
+  const val = id || 0
+  alert('check 성공 val=' + val)
+  store.commit('setAccount', val)
+
+  // if (id) {
+  //   store.commit('setAccount', id)
+  // }
+  // else {
+  //   store.commit('setAccount', 0)
+  // }
+
+}).catch((res) => {
+  console.log('failed res', res)
+  alert('check 에러 메시지 모달 팝업 res' + res)
+})
+
+
+
+
+
+
+
+
+
+
+
 console.log('1[App.vue] store.state.account.id', store.state.account.id)
 
 const id = sessionStorage.getItem('id')

@@ -35,7 +35,7 @@ import Card from '@/components/Card.vue';
 import axios from 'axios';
 import { onMounted, reactive } from "vue";
 
-const url = 'http://localhost:8081'
+const url = 'https://localhost:8081'
 const state = reactive({
   items: []
 })
@@ -69,7 +69,8 @@ axios.get(url + '/api/item').then((res) => {
   state.items = res.data
 })
   .catch((res) => {
-    console.log('failed')
+    console.log('failed res', res)
+    alert('에러 메시지 모달 팝업 res' + res)
   })
 
 

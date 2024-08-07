@@ -70,7 +70,8 @@
                 <RouterLink to="/" class="text-white">home</RouterLink>
               </li>
               <li>
-                <RouterLink to="/login" class="text-white">login</RouterLink>
+                <RouterLink to="/login" class="text-white" v-if="!store.state.account.id">login</RouterLink>
+                <RouterLink @click.prevent="logout" to="/logout" v-else>Logout</RouterLink>
               </li>
               <li>
                 <RouterLink to="/about" class="text-white">About</RouterLink>
@@ -112,9 +113,6 @@ import router from '@/router';
 import { computed } from 'vue';
 // import { useStore } from 'vuex';
 import store from '@/stores';
-
-
-
 
 
 const account = computed(() => {

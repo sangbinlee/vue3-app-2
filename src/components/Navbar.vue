@@ -30,7 +30,6 @@ import store from '@/stores';
 
 
 
-
 const account = computed(() => {
   console.log('store.state.account.id', store.state.account.id)
   return store.state.account.id
