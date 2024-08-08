@@ -66,6 +66,7 @@ const submit = () => {
   console.log('state', state)
   console.log('state.form', state.form)
   // axios.post(`${baseUrl}/auth/login`, state.form).then((res) => {
+  // axios.post(`/auth/login`, state.form).then((res) => {
   axiosInstance.post(`/auth/login`, state.form).then((res) => {
     console.log('res', res)
     console.log('cookie', res.headers)
@@ -79,11 +80,11 @@ const submit = () => {
     // api vite proxy 설정 안됨
 
     console.log('res cookies.keys()', cookies.keys())
-    cookies.set('1test', new Date().toLocaleString(), 10)
-    cookies.set('2test', new Date().toLocaleString(), 10)
-    cookies.set('3test', new Date().toLocaleString(), 10)
-    cookies.set('4test', new Date().toLocaleString(), 10)
-    cookies.set('5test', new Date().toLocaleString(), 10)
+    // cookies.set('1test', new Date().toLocaleString(), 10)
+    // cookies.set('2test', new Date().toLocaleString(), 10)
+    // cookies.set('3test', new Date().toLocaleString(), 10)
+    // cookies.set('4test', new Date().toLocaleString(), 10)
+    // cookies.set('5test', new Date().toLocaleString(), 10)
 
     cookies.set('token', new Date().toLocaleString(), 0)
     console.log(cookies.get('test'))
@@ -117,7 +118,8 @@ const submit = () => {
 
 
   // cookie test
-  axios.post(`${baseUrl}/api/cookie`).then((res) => {
+  axiosInstance.post(`/api/cookie`).then((res) => {
+    // axios.post(`${baseUrl}/api/cookie`).then((res) => {
     console.log('res', res)
     console.log('cookie 성공')
 
@@ -127,7 +129,8 @@ const submit = () => {
   })
 
 
-  axios.get(`${baseUrl}/api/cookie`).then((res) => {
+  axiosInstance.get(`/api/cookie`).then((res) => {
+    // axios.get(`${baseUrl}/api/cookie`).then((res) => {
     console.log('cookie res', res)
     console.log('cookie 성공')
 

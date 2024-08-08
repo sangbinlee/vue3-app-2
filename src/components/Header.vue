@@ -93,6 +93,7 @@ import store from '@/stores';
 
 import { useCookies } from "vue3-cookies";
 
+import axiosInstance from '../scripts/axiosInstance';
 const account = computed(() => {
   console.log('store.state.account.id', store.state.account.id)
   return store.state.account.id
@@ -111,6 +112,7 @@ const logout = () => {
 
 
 
+  // 이건 안됨
   cookies.remove('3test')
   cookies.remove('token')
   cookies.remove('token2')
@@ -118,6 +120,7 @@ const logout = () => {
   cookies.remove('token4')
 
 
+  // 10초 뒤 사라짐
   cookies.set('test1', new Date().toLocaleString(), 10)
   cookies.set('test2', new Date().toLocaleString(), 10)
   cookies.set('test3', new Date().toLocaleString(), 10)
@@ -126,6 +129,18 @@ const logout = () => {
 
 
 
+  // axios.delete(`${baseUrl}/api/check`).then((res) => {
+  axiosInstance.delete(`/api/cookie`).then((res) => {
+    console.log('cookie res', res)
+
+    let id = res.data
+    console.log('cookie 성공 id=' + id)
+
+
+  }).catch((res) => {
+    console.log('cookie failed res', res)
+    console.log('cookie 에러 메시지 모달 팝업 res' + res)
+  })
 
 
 

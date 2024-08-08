@@ -10,10 +10,12 @@ import axios from 'axios';
 
 
 
+import axiosInstance from './scripts/axiosInstance';
 
 const baseUrl = 'https://localhost:8081'
 
-axios.get(`${baseUrl}/api/check`).then((res) => {
+// axios.get(`${baseUrl}/api/check`).then((res) => {// cookie 값이 서버에 전달 안됨
+axiosInstance.get(`${baseUrl}/api/check`).then((res) => {// cookie 값이 서버에 전달 잘됨
   console.log('res', res)
 
   let id = res.data
@@ -60,6 +62,18 @@ console.log('2[App.vue] store.state.account.id', store.state.account.id)
 
 
 
+// axios.get(`${baseUrl}/api/check`).then((res) => {
+axiosInstance.get(`/api/cookie`).then((res) => {
+  console.log('cookie res', res)
+
+  let id = res.data
+  console.log('cookie 성공 id=' + id)
+
+
+}).catch((res) => {
+  console.log('cookie failed res', res)
+  console.log('cookie 에러 메시지 모달 팝업 res' + res)
+})
 
 
 </script>
