@@ -1,53 +1,7 @@
 <template>
 
 
-  <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-    <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
-      aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
-      <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
-        <use href="#circle-half"></use>
-      </svg>
-      <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-    </button>
-    <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50" width="1em" height="1em">
-            <use href="#sun-fill"></use>
-          </svg>
-          Light
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
-          aria-pressed="false">
-          <svg class="bi me-2 opacity-50" width="1em" height="1em">
-            <use href="#moon-stars-fill"></use>
-          </svg>
-          Dark
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-      <li>
-        <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
-          aria-pressed="true">
-          <svg class="bi me-2 opacity-50" width="1em" height="1em">
-            <use href="#circle-half"></use>
-          </svg>
-          Auto
-          <svg class="bi ms-auto d-none" width="1em" height="1em">
-            <use href="#check2"></use>
-          </svg>
-        </button>
-      </li>
-    </ul>
-  </div>
+
 
 
   <header data-bs-theme="dark">
@@ -59,31 +13,54 @@
             <!-- <p class="text-body-secondary">Add some information about the album below, the author, or any other
               background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link
               them off to some social networking sites or contact information.</p> -->
-          </div>
-          <div class="col-sm-4 offset-md-1 py-4">
-            <h4>Contact</h4>
+
             <ul class="list-unstyled">
-              <!-- <li><a href="#" class="text-white">Follow on Twitter</a></li>
-              <li><a href="#" class="text-white">Like on Facebook</a></li>
-              <li><a href="#" class="text-white">Email me</a></li> -->
               <li>
+                <!-- <router-link to="/" class="text-white">메인 화면</router-link> -->
                 <RouterLink to="/" class="text-white">home</RouterLink>
               </li>
+              <li v-if="store.state.account.id">
+                <router-link to="/orders" class="text-white">주문 내역</router-link>
+              </li>
               <li>
-                <RouterLink to="/login" class="text-white" v-if="!store.state.account.id">login</RouterLink>
-                <RouterLink @click.prevent="logout" to="/logout" v-else>Logout</RouterLink>
+                <router-link to="/login" class="text-white" v-if="!$store.state.account.id">로그인</router-link>
+                <a to="/login" class="text-white" @click="logout()" v-else>로그아웃</a>
               </li>
               <li>
                 <RouterLink to="/about" class="text-white">About</RouterLink>
               </li>
             </ul>
+
           </div>
+          <!-- <div class="col-sm-4 offset-md-1 py-4">dddddd -->
+          <!-- <h4>Contact</h4> -->
+          <!-- <ul class="list-unstyled"> -->
+          <!-- <li><a href="#" class="text-white">Follow on Twitter</a></li>
+              <li><a href="#" class="text-white">Like on Facebook</a></li>
+              <li><a href="#" class="text-white">Email me</a></li> -->
+          <!-- <li>
+              <RouterLink to="/" class="text-white">home</RouterLink>
+            </li> -->
+          <!-- <li v-if="store.state.account.id">
+                <router-link to="/orders" class="text-white">주문 내역</router-link>
+              </li> -->
+          <!-- <li>
+                <RouterLink to="/login" class="text-white" v-if="!store.state.account.id">login</RouterLink>
+                <a @click.prevent="logout" to="/logout" v-else>Logout</a>
+              </li> -->
+          <!-- <li>
+                <RouterLink to="/about" class="text-white">About</RouterLink>
+              </li> -->
+          <!-- </ul> -->
+          <!-- </div> -->
         </div>
       </div>
     </div>
     <div class="navbar navbar-dark bg-dark shadow-sm">
       <div class="container">
-        <a href="#" class="navbar-brand d-flex align-items-center">
+        <!-- <a href="#" class="navbar-brand d-flex align-items-center"> -->
+
+        <router-link to="/" class="navbar-brand d-flex align-items-center">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
             stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
             viewBox="0 0 24 24">
@@ -91,14 +68,14 @@
             <circle cx="12" cy="13" r="4" />
           </svg>
 
+          <!-- font family ::::  Karantina -->
 
-
-
-
-          <!-- Karantina -->
-
-          <strong>Album</strong>
-        </a>
+          <strong>Gallery</strong>
+        </router-link>
+        <router-link to="/cart" class="cart btn" v-if="store.state.account.id">
+          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+        </router-link>
+        <!-- </a> -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
           aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -127,7 +104,7 @@ const logout = () => {
   console.log('store.state', store.state)
   store.commit('setAccount', 0)
   sessionStorage.removeItem('id')
-  alert('로그아웃 성공')
+  console.log('로그아웃 성공')
   router.push({ path: '/' })
 }
 </script>

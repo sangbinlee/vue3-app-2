@@ -17,12 +17,12 @@ axios.get(`${baseUrl}/api/check`).then((res) => {
   console.log('res', res)
 
   let id = res.data
-  alert('check 성공 id=' + id)
+  console.log('check 성공 id=' + id)
 
 
   const val = id || 0
-  alert('check 성공 val=' + val)
-  store.commit('setAccount', val)
+  console.log('check 성공 val=' + val)
+  // store.commit('setAccount', val)
 
   // if (id) {
   //   store.commit('setAccount', id)
@@ -33,7 +33,7 @@ axios.get(`${baseUrl}/api/check`).then((res) => {
 
 }).catch((res) => {
   console.log('failed res', res)
-  alert('check 에러 메시지 모달 팝업 res' + res)
+  console.log('check 에러 메시지 모달 팝업 res' + res)
 })
 
 
@@ -68,8 +68,10 @@ console.log('2[App.vue] store.state.account.id', store.state.account.id)
   <!-- <Navbar /> -->
   <Svg />
   <Header />
-  <RouterView />
-  <Footer />
+  <div class="container">
+    <RouterView />
+    <Footer />
+  </div>
 </template>
 
 <style scoped>
