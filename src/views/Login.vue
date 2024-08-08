@@ -76,10 +76,16 @@ const submit = () => {
 
 
 
-    // api 로 쿠키가 
+    // api vite proxy 설정 안됨
 
     console.log('res cookies.keys()', cookies.keys())
-    cookies.set('test', new Date().toLocaleString())
+    cookies.set('1test', new Date().toLocaleString(), 10)
+    cookies.set('2test', new Date().toLocaleString(), 10)
+    cookies.set('3test', new Date().toLocaleString(), 10)
+    cookies.set('4test', new Date().toLocaleString(), 10)
+    cookies.set('5test', new Date().toLocaleString(), 10)
+
+    cookies.set('token', new Date().toLocaleString(), 0)
     console.log(cookies.get('test'))
     // VueCookies.remove('test')
     if (cookies.isKey('test')) {

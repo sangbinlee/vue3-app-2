@@ -91,6 +91,7 @@ import { computed } from 'vue';
 // import { useStore } from 'vuex';
 import store from '@/stores';
 
+import { useCookies } from "vue3-cookies";
 
 const account = computed(() => {
   console.log('store.state.account.id', store.state.account.id)
@@ -100,12 +101,37 @@ const account = computed(() => {
 // const store = useStore()
 
 
+const { cookies } = useCookies();
 const logout = () => {
   console.log('store.state', store.state)
   store.commit('setAccount', 0)
   sessionStorage.removeItem('id')
-  console.log('로그아웃 성공')
+  console.log('0000000000 로그아웃 성공')
   router.push({ path: '/' })
+
+
+
+  cookies.remove('3test')
+  cookies.remove('token')
+  cookies.remove('token2')
+  cookies.remove('token3')
+  cookies.remove('token4')
+
+
+  cookies.set('test1', new Date().toLocaleString(), 10)
+  cookies.set('test2', new Date().toLocaleString(), 10)
+  cookies.set('test3', new Date().toLocaleString(), 10)
+  cookies.set('test4', new Date().toLocaleString(), 10)
+
+
+
+
+
+
+
+
+
+
 }
 </script>
 

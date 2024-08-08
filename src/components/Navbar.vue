@@ -42,7 +42,7 @@ const logout = () => {
   console.log('store.state', store.state)
   store.commit('setAccount', 0)
   sessionStorage.removeItem('id')
-  alert('로그아웃 성공')
+  alert('111111로그아웃 성공')
   router.push({ path: '/' })
 }
 </script>
