@@ -27,32 +27,32 @@
   </div>
 </template>
 
-<script>
+<script setup lang="ts">
 import {reactive} from "vue";
 import axios from "axios";
 import lib from "@/scripts/lib";
 
-export default {
-  setup() {
-    const state = reactive({
-      orders: [],
-    })
+import axiosInstance from '../scripts/axiosInstance';
 
-    axios.get("/api/orders").then(({data}) => {
-      state.orders = [];
 
-      for (let d of data) {
-        if (d.items) {
-          d.items = JSON.parse(d.items);
-        }
 
-        state.orders.push(d);
-      }
-    })
+const state = reactive({
+  orders: [],
+})
 
-    return {state, lib,}
+// axios.get("/api/orders").then(({ data }) => {
+axiosInstance.get("/api/orders").then(({ data }) => {
+  state.orders = [];
+
+  for (let d of data) {
+    if (d.items) {
+      d.items = JSON.parse(d.items);
+    }
+
+    state.orders.push(d);
   }
-}
+})
+
 </script>
 
 <style scoped>

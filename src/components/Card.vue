@@ -36,6 +36,7 @@ import store from '@/stores'
 import axios from "axios"
 import lib from "@/scripts/lib"
 
+import axiosInstance from '../scripts/axiosInstance';
 
 defineProps<{
   item?: Object,
@@ -44,7 +45,8 @@ defineProps<{
 
 const baseUrl = 'https://localhost:8081'
 const addToCart = (itemId) => {
-  axios.post(`${baseUrl}/api/cart/${itemId}`).then((res) => {
+  axiosInstance.post(`/api/cart/${itemId}`).then((res) => {
+    // axios.post(`${baseUrl}/api/cart/${itemId}`).then((res) => { // 403 Forbidden  ::: https://localhost:8081/api/cart/2
     console.log('success res', res)
   })
 };

@@ -78,9 +78,8 @@
 
 
 <script setup lang="ts">
-import lib from "../scripts/lib";
-import axios from "axios";
 import { computed, reactive } from "vue";
+import lib from "../scripts/lib";
 
 
 import router from '@/router';
@@ -96,19 +95,28 @@ const state = reactive({
   }
 })
 
-const baseUrl = 'https://localhost:8081'
+import axiosInstance from '../scripts/axiosInstance';
+// const baseUrl = 'https://localhost:8081'
 const load = () => {
-  axios.get(`${baseUrl}/api/cart`).then(({ data }) => {
+  // axios.get(`${baseUrl}/api/cart`).then(({ data }) => {
+  axiosInstance.get(`/api/cart`).then(({ data }) => {
     console.log(data);
     state.items = data;
   })
 };
 
 const submit = () => {
-  const args = JSON.parse(JSON.stringify(state.form));
-  args.items = JSON.stringify(state.items);
 
-  axios.post(`${baseUrl}/api/orders`, args).then(() => {
+
+  console.log('state.form', state.form)
+  console.log('JSON.stringify(state.form)', JSON.stringify(state.form))
+  const args = JSON.parse(JSON.stringify(state.form));
+  console.log('args', args)
+  args.items = JSON.stringify(state.items);
+  console.log('222args', args)
+
+  axiosInstance.post(`/api/orders`, args).then(() => {
+    // axios.post(`${baseUrl}/api/orders`, args).then(() => {
     alert('주문 완료하였습니다.');
     router.push({ path: "/orders" })
   })
@@ -126,7 +134,7 @@ const computedPrice = computed(() => {
 
 load();
 
- 
+
 </script>
 
 <style scoped></style>

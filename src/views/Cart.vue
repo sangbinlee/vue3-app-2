@@ -3,7 +3,7 @@
     <div class="container">
       <ul>
         <li v-for="(i, idx) in state.items" :key="idx">
-          <img :src="i.imgPath"/>
+          <img :src="i.path+i.name"/>
           <span class="name">{{ i.name }}</span>
           <span class="price">{{ lib.getNumberFormatted(i.price - i.price * i.discountPer / 100) }}원</span>
           <i class="fa fa-trash" @click="remove(i.id)"></i>
@@ -21,6 +21,7 @@ import {reactive} from "vue";
 import axios from "axios";
 import lib from "@/scripts/lib";
 
+import axiosInstance from '../scripts/axiosInstance';
 const baseUrl = 'https://localhost:8081'
 
 
@@ -29,14 +30,15 @@ const state = reactive({
 })
 
 const load = () => {
-  axios.get(`${baseUrl}/api/cart`).then(({ data }) => {
+  axiosInstance.get(`/api/cart`).then(({ data }) => {
+  // axios.get(`${baseUrl}/api/cart`).then(({ data }) => {
     console.log(data);
     state.items = data;
   })
 };
 
 const remove = (itemId) => {
-  axios.delete(`/api/cart/${itemId}`).then(() => {
+  axiosInstance.delete(`/api/cart/${itemId}`).then(() => {
     load();
   })
 }
