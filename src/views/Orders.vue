@@ -3,24 +3,24 @@
     <div class="container">
       <table class="table table-bordered">
         <thead>
-        <tr>
-          <th>번호</th>
-          <th>주문자명</th>
-          <th>주소</th>
-          <th>결제 수단</th>
-          <th>구입 항목</th>
-        </tr>
+          <tr>
+            <th>번호</th>
+            <th>주문자명</th>
+            <th>주소</th>
+            <th>결제 수단</th>
+            <th>구입 항목</th>
+          </tr>
         </thead>
         <tbody>
-        <tr v-for="(o, idx1) in state.orders" :key="idx1">
-          <td>{{ state.orders.length - idx1 }}</td>
-          <td>{{ o.name }}</td>
-          <td>{{ o.address }}</td>
-          <td>{{ o.payment }}</td>
-          <td>
-            <div v-for="(i, idx2) in o.items" :key="idx2">{{ i.name }}</div>
-          </td>
-        </tr>
+          <tr v-for="(o, idx1) in state.orders" :key="idx1">
+            <td>{{ state.orders.length - idx1 }}</td>
+            <td>{{ o.name }}</td>
+            <td>{{ o.address }}</td>
+            <td>{{ o.payment }}</td>
+            <td>
+              <div v-for="(i, idx2) in o.items" :key="idx2">{{ i.name }}</div>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -28,9 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import {reactive} from "vue";
-import axios from "axios";
-import lib from "@/scripts/lib";
+import { reactive } from "vue";
 
 import axiosInstance from '../scripts/axiosInstance';
 
@@ -39,6 +37,7 @@ import axiosInstance from '../scripts/axiosInstance';
 const state = reactive({
   orders: [],
 })
+
 
 // axios.get("/api/orders").then(({ data }) => {
 axiosInstance.get("/api/orders").then(({ data }) => {
@@ -60,7 +59,7 @@ axiosInstance.get("/api/orders").then(({ data }) => {
   margin-top: 30px;
 }
 
-.table > tbody {
+.table>tbody {
   border-top: 1px solid #eee;
 }
 </style>
