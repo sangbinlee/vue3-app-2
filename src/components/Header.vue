@@ -104,11 +104,30 @@ const account = computed(() => {
 
 const { cookies } = useCookies();
 const logout = () => {
-  console.log('store.state', store.state)
-  store.commit('setAccount', 0)
-  sessionStorage.removeItem('id')
-  console.log('0000000000 로그아웃 성공')
-  router.push({ path: '/' })
+
+
+
+
+  // axios.delete(`${baseUrl}/api/check`).then((res) => {
+  axiosInstance.post(`/api/logout`).then((res) => {
+    console.log('cookie res', res)
+
+    console.log('store.state', store.state)
+    store.commit('setAccount', 0)
+    // sessionStorage.removeItem('id')
+    console.log('0000000000 로그아웃 성공')
+    router.push({ path: '/' })
+
+
+  }).catch((res) => {
+    console.log('logout failed res', res)
+    console.log('logout 에러 메시지 모달 팝업 res' + res)
+  })
+
+
+
+
+
 
 
 
