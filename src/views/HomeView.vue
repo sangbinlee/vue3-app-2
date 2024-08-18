@@ -32,10 +32,10 @@
 
 <script setup lang="ts">
 import Card from '@/components/Card.vue';
-import axios from 'axios';
 import { onMounted, reactive } from "vue";
 
-const url = 'https://localhost:8081'
+import axiosInstance from '@/scripts/axiosInstance';
+// const url = 'https://localhost:8081'
 const state = reactive({
   items: []
 })
@@ -63,7 +63,8 @@ onMounted(async () => {
 //   .then(json => console.log(json))
 
 
-axios.get(url + '/api/item').then((res) => {
+// $axios.get('/api/item').then((res) => {
+axiosInstance.get('/api/item').then((res) => {
   // console.log('111 res', res)
   // console.log('111 data', data)
   state.items = res.data

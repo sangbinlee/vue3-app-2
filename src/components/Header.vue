@@ -93,7 +93,8 @@ import store from '@/stores';
 
 import { useCookies } from "vue3-cookies";
 
-import axiosInstance from '../scripts/axiosInstance';
+import axiosInstance from '@/scripts/axiosInstance';
+import dataService from '@/api/dataService';
 const account = computed(() => {
   console.log('store.state.account.id', store.state.account.id)
   return store.state.account.id
@@ -104,9 +105,6 @@ const account = computed(() => {
 
 const { cookies } = useCookies();
 const logout = () => {
-
-
-
 
   // axios.delete(`${baseUrl}/api/check`).then((res) => {
   axiosInstance.post(`/api/logout`).then((res) => {
@@ -119,34 +117,32 @@ const logout = () => {
     router.push({ path: '/' })
 
 
+    // 이건 안됨
+    cookies.remove('3test')
+    cookies.remove('token')
+    cookies.remove('token2')
+    cookies.remove('token3')
+    cookies.remove('token4')
+
+
+    // 10초 뒤 사라짐
+    cookies.set('test1', new Date().toLocaleString(), 10)
+    cookies.set('test2', new Date().toLocaleString(), 10)
+    cookies.set('test3', new Date().toLocaleString(), 10)
+    cookies.set('test4', new Date().toLocaleString(), 10)
+
+
   }).catch((res) => {
     console.log('logout failed res', res)
     console.log('logout 에러 메시지 모달 팝업 res' + res)
   })
 
 
+}
 
 
 
-
-
-
-  // 이건 안됨
-  cookies.remove('3test')
-  cookies.remove('token')
-  cookies.remove('token2')
-  cookies.remove('token3')
-  cookies.remove('token4')
-
-
-  // 10초 뒤 사라짐
-  cookies.set('test1', new Date().toLocaleString(), 10)
-  cookies.set('test2', new Date().toLocaleString(), 10)
-  cookies.set('test3', new Date().toLocaleString(), 10)
-  cookies.set('test4', new Date().toLocaleString(), 10)
-
-
-
+const deleteCookie = () => {
 
   // axios.delete(`${baseUrl}/api/check`).then((res) => {
   axiosInstance.delete(`/api/cookie`).then((res) => {
@@ -161,12 +157,21 @@ const logout = () => {
     console.log('cookie 에러 메시지 모달 팝업 res' + res)
   })
 
-
-
-
-
-
 }
+
+
+const  getUser = async() => {
+  await dataService.getSingleUser(2)
+    .then((response: any) => {
+      console.log('response', response)
+    })
+    .catch((e:Error)=> {
+      console.log('e', e)
+    })
+}
+
+// getUser()
+
 </script>
 
 <style></style>

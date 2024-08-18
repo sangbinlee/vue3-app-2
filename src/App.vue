@@ -10,12 +10,12 @@ import axios from 'axios';
 
 
 
-import axiosInstance from './scripts/axiosInstance';
+import axiosInstance from '@/scripts/axiosInstance';
 
-const baseUrl = 'https://localhost:8081'
+// const baseUrl = 'https://localhost:8081'
 
 // axios.get(`${baseUrl}/api/check`).then((res) => {// cookie 값이 서버에 전달 안됨
-axiosInstance.get(`${baseUrl}/api/check`).then((res) => {// cookie 값이 서버에 전달 잘됨
+axiosInstance.get(`/api/check`).then((res) => {// cookie 값이 서버에 전달 잘됨
   console.log('res', res)
 
   let id = res.data
