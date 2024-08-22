@@ -71,3 +71,5 @@ npm run lint
 
 # ERR_CERT_AUTHORITY_INVALID
     https
+
+    jenkins pipline test
