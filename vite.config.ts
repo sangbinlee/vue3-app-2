@@ -37,6 +37,7 @@ export default defineConfig({
     //   cert: './certificate.crt'
     // },
     port: 3008
+
     // origin: 'https://127.0.0.1:8080/'// 안됨
     // proxy: {
     //   '/api': 'https://localhost:8081', // 안됨
