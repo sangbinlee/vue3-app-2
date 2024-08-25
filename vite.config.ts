@@ -5,15 +5,15 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { defineConfig } from 'vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-import basicSsl from '@vitejs/plugin-basic-ssl'
+// import basicSsl from '@vitejs/plugin-basic-ssl'// https
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     vueJsx(),
-    vueDevTools(),
-    basicSsl()
+    vueDevTools()
+    // basicSsl()
     // {
     //   name: 'test',
     //   domains: ['*.custom.com'],
@@ -30,12 +30,12 @@ export default defineConfig({
     // https://www.xolphin.com/support/OpenSSL/OpenSSL_-_Installation_under_Windows
     // https://slproweb.com/products/Win32OpenSSL.html
     // openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -keyout private.key -out certificate.crt
-    https: {
-      // key: './vue3-app-2-privateKey.key',
-      // cert: './vue3-app-2.crt'
-      key: './private.key',
-      cert: './certificate.crt'
-    },
+    // https: {
+    //   // key: './vue3-app-2-privateKey.key',
+    //   // cert: './vue3-app-2.crt'
+    //   key: './private.key',
+    //   cert: './certificate.crt'
+    // },
     port: 3008
     // origin: 'https://127.0.0.1:8080/'// 안됨
     // proxy: {
