@@ -94,7 +94,7 @@ const deleteTodo = async (id) => {
   }
 };
 
-const toggleTodo = async (index, checked) => {
+const toggleTodo = async (index: any, checked: any) => {
   error.value = '';
   const id = todos.value[index].id;
   try {
@@ -117,9 +117,9 @@ const moveToCreatePage = () => {
   })
 };
 
-let timeout = null;
+let timeout  = null;
 const searchTodo = () => {
-  clearTimeout(timeout);
+  clearTimeout(timeout: any);
   getTodos(1);
 };
 

@@ -150,3 +150,23 @@ npm run lint
         Successfully deployed certificate for gallery.sodi9.store to /etc/nginx/sites-enabled/gallery.sodi9.store
 
     sudo systemctl restart nginx
+
+
+# build error     
+
+
+
+error TS7006: Parameter 'id' implicitly has an 'any' type.
+error TS2339: Property 'completed' does not exist on type 'never'.
+error TS7005: Variable 'timeout' implicitly has an 'any' type.
+
+
+
+
+
+
+
+
+
+
+

@@ -56,20 +56,30 @@ pipeline {
         //     sh 'pm2 restart "vue3-gallery" || pm2 start "npm run dev" --name vue3-gallery'
         //   }
         // }
-        stage('Build') {
-          steps {
-            echo 'vue3-gallery building the application...  now.... 에러 나니까 root 경로를 빌드 dist로 바꾸자'
-            echo 'vue3-gallery building the application...  now..../var/lib/jenkins/workspace/vue3-gallery/dist '
-            sh 'npm run build'
-          }
-        }
+
+
+
+
+
+        // ts 스크립트 에러 나서 빌드 안됨
+
+        // stage('Build') {
+        //   steps {
+        //     echo 'vue3-gallery building the application...  now.... 에러 나니까 root 경로를 빌드 dist로 바꾸자'
+        //     echo 'vue3-gallery building the application...  now..../var/lib/jenkins/workspace/vue3-gallery/dist '
+        //     sh 'npm run build'
+        //   }
+        // }
+
+
 
 
         stage('run') {
           steps {
             echo 'vue3-gallery building the application...  now....'
             // sh 'npm run dev'
-            sh 'pm2 restart "vue3-gallery" || pm2 start "npm run preview" --name vue3-gallery'
+            // sh 'pm2 restart "vue3-gallery" || pm2 start "npm run preview" --name vue3-gallery'
+            sh 'pm2 restart "vue3-gallery" || pm2 start "npm run dev" --name vue3-gallery'
           }
         } 
 

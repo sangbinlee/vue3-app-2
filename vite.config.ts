@@ -36,8 +36,8 @@ export default defineConfig({
       key: './private.key',
       cert: './certificate.crt'
     },
-    port: 3000,
-    origin: 'https://127.0.0.1:8080/'
+    port: 3008
+    // origin: 'https://127.0.0.1:8080/'// 안됨
     // proxy: {
     //   '/api': 'https://localhost:8081', // 안됨
     //   '/apixxxx': {
